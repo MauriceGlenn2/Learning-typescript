@@ -47,4 +47,55 @@ let newCar: Car1 = {
 let x : string | number = "number"
 
 type occupation = "employed" | "student"
-let jack: occupation = "employed"
+let jackOccupation: occupation = "employed"
+
+//type assertion
+let y: any = "a"
+y = <number> 22
+
+//functions
+function add(a: number, b: number): number {
+    return a + b
+}
+add(1, "p") //going to be an error, only numbers
+add(1, 2)
+
+//function that don't return anything
+function sayHi(): void {
+    console.log("hi")
+}
+
+//Genereics
+//give the function a placeholder of T, T can be anything
+function copyArray<T>(arr: T[]): T[] {
+    return [...arr]
+}
+//number & string is now the placeholder
+let numCopy = copyArray<number>([1, 2, 3])
+let stringCopy = copyArray<string>(["a", "b", "c"])
+
+//Enums, buch of options
+
+enum FaveColor {
+    Red = "my fave color",
+    Green = "my second fave color",
+    Blue = "my third fave color"
+}
+//enum example
+// and a ? for an optional value
+interface Student {
+    name: string,
+    age?: number,
+    faveColor: FaveColor
+}
+
+function displayStudent(student: Student): void {
+    // "\n" is a new line
+    const info: string = student.name + "\n" + student.age + "\n" + student.faveColor
+    document.body.innerText = info
+}
+displayStudent({
+    name: "Moe",
+    age: 22,
+    faveColor: FaveColor.Red
+})
